@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row align-items-start align-items-stretch d-flex">
+        <div class="col-md-2 ms-3">
+            <h1>Login</h1>
+            <form style="background-color:#e2d2ff;" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="ms-2 mt-2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" type="email">
+                        <mat-error>
+                            <span>Email must have &#64; </span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="ms-2 mt-2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" type="password">
+                        <mat-error>
+                            <span>Password must be at least 8 characters long.</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button class="ms-2 mt-5" mat-raised-button style="background-color: #af83ff;" type="submit" [disabled]="loginForm.invalid">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

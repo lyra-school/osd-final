@@ -1,0 +1,26 @@
+<mat-card style="background-color:#e2d2ff;">
+    <!--https://stackoverflow.com/questions/57361145/how-to-use-picture-element-in-angular-material-cards-->
+    <picture>
+        <source srcset="{{sighting?.imageLink}}">
+        <img style="width: 100%;" class="object-fit-cover" mat-card-image src="">
+    </picture>
+    <mat-card-content>
+        <p class="h5 text-body-secondary"> {{sighting?.description}} </p>
+        <p class="h4">Birds</p>
+        <div class="container-fluid m-0 p-0">
+            <div class="row align-items-start align-items-stretch d-flex m-0 p-0">
+                <div class="col-md-6" *ngFor="let b of birds">
+                    <p>{{b.type}}</p>
+                    <p class="fst-italic">{{b.latinName}}</p>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="button" mat-raised-button style="background-color: #af83ff;" (click)="view()">View</button>
+        @if((this.authService.currentUser$.getValue()?._id == sighting?.owner && sighting?.owner != undefined && sighting?.owner != null)
+            || this.authService.currentUser$.getValue()?.role == "0") {
+            <button type="button" mat-raised-button style="background-color: #af83ff;" (click)="deleteSighting()">Delete</button>
+        }
+    </mat-card-actions>
+</mat-card>

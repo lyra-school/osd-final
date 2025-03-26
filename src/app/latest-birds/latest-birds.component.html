@@ -1,0 +1,9 @@
+<h1 class="h2 m-3">Latest birds</h1>
+<button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="toSubmit()">Submit your own</button>
+<button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="toSightings()">Browse our latest sightings</button>
+
+<div class="container-fluid" *ngIf="birds.length > 0">
+    <div class="row align-items-start align-items-stretch d-flex">
+        <app-bird class="col-sm-6 col-md-4 col-xl-3 mb-5" *ngFor="let b of birds" [bird] = "b" (deletionEvent)="retrieveBirds()"></app-bird>
+    </div>
+</div>

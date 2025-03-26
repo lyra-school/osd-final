@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row align-items-start align-items-stretch d-flex">
+        <form class="col-md-6 offset-md-3 mt-5" [formGroup]="sightingForm" (ngSubmit)="onSubmit()">
+            <mat-card style="background-color:#e2d2ff;">
+                <mat-card-header class="h2 m-3">Submit Sighting</mat-card-header>
+                <mat-form-field appearance="outline">
+                    <mat-label for="description">Description</mat-label>
+                    <input id="description" type="text" matInput formControlName="description">
+                    @if (!description?.value){
+                    <mat-hint>A small paragraph describing what you saw</mat-hint>
+                    }
+                    @if (description?.hasError('required') ){
+                    <mat-error>You must have a description</mat-error>
+                    }
+                    @else if (description?.hasError('minlength')) {
+                    <mat-error>Description must be at least 10 characters long</mat-error>
+                    }@else if(description?.hasError('maxlength')) {
+                        <mat-error>Description must be no more than 256 characters long</mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="date">Date</mat-label>
+                    <input id="date" type="date" matInput formControlName="date">
+                    @if (!date?.value){
+                    <mat-hint>Date when you saw your birds</mat-hint>
+                    }
+                    @if (date?.hasError('required') ){
+                    <mat-error>You must select a date</mat-error>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="habitat">Habitat</mat-label>
+                    <input id="habitat" type="text" matInput formControlName="habitat">
+                    @if (!habitat?.value){
+                    <mat-hint>The ecosystem your birds were found in (optional)</mat-hint>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="area">Area</mat-label>
+                    <input id="area" type="text" matInput formControlName="area">
+                    @if (!area?.value){
+                    <mat-hint>Geographically where you found your birds (optional)</mat-hint>
+                    }
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for="imageLink">Image</mat-label>
+                    <input id="imageLink" type="text" matInput formControlName="imageLink">
+                    @if (!imageLink?.value){
+                    <mat-hint>An externally hosted image you want to add (optional)</mat-hint>
+                    }
+                    @if (description?.hasError('pattern') ){
+                        <mat-error>This must be a valid URL</mat-error>
+                    }
+                </mat-form-field>
+                <mat-card-actions>
+                    <button mat-raised-button type="button" style="background-color: #af83ff;" (click)="addBird()">Add Bird</button>
+                    <button mat-raised-button type="submit" style="background-color: #af83ff;" [disabled]="sightingForm.invalid">Submit</button>
+                </mat-card-actions>
+            </mat-card>
+            <div formArrayName="birds">
+                @for(bird of birds.controls; track $index ; let i=$index; ){
+                <mat-card>
+                    <legend>Bird No. {{i+1}}</legend>
+                    <div [formGroupName]="i">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Type {{i+1}}:</mat-label>
+                            <mat-select formControlName="type">
+                                @for(b of birdCollection; track b._id) {
+                                    <mat-option [value]="b._id">{{b.type}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-card-actions>
+                            <button type="button" mat-raised-button style="background-color: #af83ff;" (click)="removeBird(i)">Delete Bird</button>
+                        </mat-card-actions>
+                    </div>
+                </mat-card>
+                }
+            </div>
+            
+        </form>
+    </div>
+</div>

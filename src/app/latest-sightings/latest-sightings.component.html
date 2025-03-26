@@ -1,0 +1,19 @@
+<h1 class="h2 m-3">Latest sightings</h1>
+<button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="toSubmit()">Submit your own</button>
+<button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="toBirds()">Browse our available bird types</button>
+
+<div class="container-fluid" *ngIf="sightings.length > 0">
+    <div class="row align-items-start align-items-stretch d-flex">
+        <app-sighting class="col-sm-6 col-md-4 col-xl-3 mb-5" *ngFor="let s of sightings" [sighting] = "s" [birds] = "retrieveBirdsFromId(s)" (deletionEvent)="retrieveSightingsAndSetPage()"></app-sighting>
+    </div>
+</div>
+
+<div class="ms-2">
+    <div class="container-fluid" *ngIf="sightings.length > 0">
+        <div class="row align-items-start align-items-stretch d-flex">
+            <button *ngIf="showPrevButton" class="col-xl-1"  type="button" mat-raised-button style="background-color: #af83ff;" (click)="previousPage()">Previous Page</button>
+            <button *ngIf="showButton" class="col-xl-1" type="button" mat-raised-button style="background-color: #af83ff;" (click)="nextPage()">Next Page</button>
+        </div>
+    </div>
+</div>
+

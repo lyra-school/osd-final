@@ -1,0 +1,64 @@
+<div class="container-fluid">
+ <div class="row align-items-start align-items-stretch d-flex">
+    <form class="col-md-6 offset-md-3 mt-5" [formGroup]="birdForm" (ngSubmit)="onSubmit()">
+        <mat-card style="background-color:#e2d2ff;">
+            <mat-card-header class="h2 m-3">Submit Bird</mat-card-header>
+            <mat-form-field appearance="outline">
+                <mat-label for="type">Type</mat-label>
+                <input id="type" type="text" matInput formControlName="type">
+                @if (!type?.value){
+                <mat-hint>The common name of your bird</mat-hint>
+                }
+                @if (type?.hasError('required') ){
+                <mat-error>You must have a type</mat-error>
+                }
+                @else if(type?.hasError('maxlength')) {
+                    <mat-error>Type must be no more than 64 characters long</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label for="latinName">Latin Name</mat-label>
+                <input id="latinName" type="text" matInput formControlName="latinName">
+                @if (!latinName?.value){
+                <mat-hint>The scientific (latin) name of your bird</mat-hint>
+                }
+                @if (latinName?.hasError('required') ){
+                <mat-error>You must have a latin name</mat-error>
+                }
+                @else if(latinName?.hasError('maxlength')) {
+                    <mat-error>The latin name must be no more than 64 characters long</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label for="family">Family</mat-label>
+                <input id="family" type="text" matInput formControlName="family">
+                @if (!family?.value){
+                <mat-hint>The family name of your bird</mat-hint>
+                }
+                @if (family?.hasError('required') ){
+                <mat-error>You must have a family</mat-error>
+                }
+                @else if(family?.hasError('maxlength')) {
+                    <mat-error>The family name must be no more than 64 characters long</mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label for="familyAlternateName">Family (Alt.)</mat-label>
+                <input id="familyAlternateName" type="text" matInput formControlName="familyAlternateName">
+                @if (!familyAlternateName?.value){
+                <mat-hint>The common name for your bird's family</mat-hint>
+                }
+                @if (familyAlternateName?.hasError('required') ){
+                <mat-error>You must have an alternate family name</mat-error>
+                }
+                @else if(familyAlternateName?.hasError('maxlength')) {
+                    <mat-error>The alternate family name must be no more than 64 characters long</mat-error>
+                }
+            </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button style="background-color: #af83ff;" type="submit" [disabled]="birdForm.invalid">Submit</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+ </div>
+</div>

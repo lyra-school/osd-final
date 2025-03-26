@@ -1,0 +1,13 @@
+<mat-card style="background-color:#e2d2ff;">
+    <mat-card-content>
+        <p>{{bird?.type}}</p>
+        <p class="fst-italic">{{bird?.latinName}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="button" mat-raised-button style="background-color: #af83ff;" (click)="view()">View</button>
+        @if(this.authService.currentUser$.getValue()?._id == bird?.owner && bird?.owner != undefined && bird?.owner != null
+        || this.authService.currentUser$.getValue()?.role == "0") {
+            <button type="button" mat-raised-button style="background-color: #af83ff;" (click)="deleteBird()">Delete</button>
+        }
+    </mat-card-actions>
+</mat-card>

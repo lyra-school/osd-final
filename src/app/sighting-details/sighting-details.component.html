@@ -1,0 +1,42 @@
+@if (sighting$ | async; as Sighting) {
+
+
+@if (showForm)
+{
+<div><app-submit-sighting [sighting]=sighting></app-submit-sighting></div>
+}
+@else {
+<div class="container-fluid">
+    <div class="row align-items-start align-items-stretch d-flex">
+        <mat-card class="col-md-6 offset-md-3 mt-5" style="background-color:#e2d2ff;">
+            <mat-card-header>
+                <mat-card-title>Sighting Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <picture>
+                    <source srcset="{{sighting.imageLink}}">
+                    <img style="width:150px" mat-card-image class="" src="">
+                </picture>
+                <p>Description: {{sighting.description}}</p>
+                <p>Date: {{sighting.date}}</p>
+                <p>Habitat: {{sighting.location.habitat}}</p>
+                <p>Area: {{sighting.location.area}}</p>
+                <p>Date Last Changed: {{sighting.dateLastChanged}}</p>
+        
+                @for (b of expBirds; track b ; let i=$index; ){
+                <p>{{b.type | titlecase}}</p>
+                <p>{{b.latinName}}</p>
+                }
+        
+            </mat-card-content>
+            <mat-card-actions>
+                @if(this.authService.currentUser$.getValue()?._id == sighting.owner && sighting.owner != undefined && sighting.owner != null
+                || this.authService.currentUser$.getValue()?.role == "0") {
+                    <button mat-raised-button style="background-color: #af83ff;" (click)="editSighting()">Edit</button>
+                }
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+}
+}

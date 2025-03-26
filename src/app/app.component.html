@@ -1,0 +1,7 @@
+<mat-toolbar style="background-color:#c4a3ff;">
+    Captured With A Camera
+    <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="login()" *ngIf="!this.service.isAuthenticated$.getValue()">Login</button>
+    <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="register()" *ngIf="!this.service.isAuthenticated$.getValue()">Register</button>
+    <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="logout()" *ngIf="this.service.isAuthenticated$.getValue()">Logout</button>
+</mat-toolbar>
+<router-outlet></router-outlet>
