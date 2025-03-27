@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { User } from '../interfaces/user';
@@ -8,6 +8,7 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
 
+  currentUserId: WritableSignal<string> = signal("");
   readonly currentUser$: BehaviorSubject<User | null>;
   readonly isAuthenticated$: BehaviorSubject<boolean>;
 
@@ -53,6 +54,10 @@ export class AuthService {
           this.currentUser$.next(payload as User);
           //  this.token$.next(body.accessToken);
           this.isAuthenticated$.next(true);
+          if(this.currentUser$.value?._id == undefined) {
+            return;
+          }
+          this.updateCurrentUserId(this.currentUser$.value?._id);
           return;
         })
       );
@@ -69,6 +74,10 @@ export class AuthService {
   public register(user: User) : Observable<User> {
     return this.http.post<User>(this.Uri + "/users", user)
     .pipe(catchError(this.handleError));
+  }
+
+  updateCurrentUserId(id: string) {
+    this.currentUserId.update(value => id);
   }
 
   // taken from worksheets; this method is generic enough anyway
