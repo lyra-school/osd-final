@@ -37,7 +37,7 @@ export class AuthService {
     }
   }
 
-  private Uri = `http://ec2-34-245-236-44.eu-west-1.compute.amazonaws.com:3000`;
+  private Uri = `http://34.243.118.68:3000`;
 
   private authenticateTimeout?: any;
 

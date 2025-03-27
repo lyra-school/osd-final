@@ -8,7 +8,7 @@ export const birdsInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const authService = inject(AuthService);
 
-  const apiUri = `http://ec2-34-245-236-44.eu-west-1.compute.amazonaws.com:3000/`;
+  const apiUri = `http://34.243.118.68:3000`;
   const gatewayUri = `https://190mnbm8j2.execute-api.eu-west-1.amazonaws.com`;
 
   const jwt = localStorage.getItem('token');

@@ -11,7 +11,7 @@ export class UsersService {
   private userEndpoint = 'https://190mnbm8j2.execute-api.eu-west-1.amazonaws.com';
 
   // for changing user info as it depends on validation that would otherwise have to be redone for a lambda
-  private alternateUserEndpoint = 'http://ec2-34-245-236-44.eu-west-1.compute.amazonaws.com:3000/users';
+  private alternateUserEndpoint = 'http://34.243.118.68:3000/users';
   constructor(private http: HttpClient) { }
 
   public getUser(id:string) : Observable<User> {

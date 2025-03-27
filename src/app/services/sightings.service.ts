@@ -8,8 +8,8 @@ import { Sighting } from '../interfaces/sighting';
   providedIn: 'root'
 })
 export class SightingsService {
-  private birdsEndpoint = 'http://ec2-34-245-236-44.eu-west-1.compute.amazonaws.com:3000/birds';
-  private sightingsEndpoint = 'http://ec2-34-245-236-44.eu-west-1.compute.amazonaws.com:3000/sightings';
+  private birdsEndpoint = 'http://34.243.118.68:3000/birds';
+  private sightingsEndpoint = 'http://34.243.118.68:3000/sightings';
 
   constructor(private http: HttpClient) { }
 
