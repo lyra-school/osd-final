@@ -43,6 +43,9 @@ export class ProfileComponent {
 
   ngOnInit(): void {
     this.retrieveBirds();
+    this.birdForm = this.formBuilder.group({
+      name: []
+    });
 
     this.id = this.route.snapshot.paramMap.get('id');
 

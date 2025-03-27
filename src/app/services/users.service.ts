@@ -29,8 +29,9 @@ export class UsersService {
     .pipe(retry(3), catchError(this.handleError));
   }
 
+  // have to use GET because of a limitation with angular
   public updateUserFavourites(id:string, birdName: string) : Observable<string> {
-    return this.http.put<string>(this.userEndpoint + '/' + id + '/favourites', birdName)
+    return this.http.get<string>(this.userEndpoint + '/' + id + '/favourites/' + birdName)
     .pipe(retry(3), catchError(this.handleError));
   }
 
