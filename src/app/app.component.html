@@ -3,5 +3,6 @@
     <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="login()" *ngIf="!this.service.isAuthenticated$.getValue()">Login</button>
     <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="register()" *ngIf="!this.service.isAuthenticated$.getValue()">Register</button>
     <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="logout()" *ngIf="this.service.isAuthenticated$.getValue()">Logout</button>
+    <button class="m-3" type="button" mat-raised-button style="background-color: #af83ff;" (click)="profile()" *ngIf="this.service.isAuthenticated$.getValue()">Profile</button>
 </mat-toolbar>
 <router-outlet></router-outlet>

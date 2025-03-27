@@ -5,5 +5,6 @@ export interface User {
     password?: string,
     hashedPassword?: string,
     about?: string,
-    role?: string
+    role?: string,
+    favourites?: string[]
 }

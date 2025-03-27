@@ -9,10 +9,11 @@ export const birdsInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
 
   const apiUri = `http://localhost:3000/`;
+  const gatewayUri = `https://190mnbm8j2.execute-api.eu-west-1.amazonaws.com`;
 
   const jwt = localStorage.getItem('token');
 
-  if (req.url.startsWith(apiUri) && jwt != '') {
+  if ((req.url.startsWith(apiUri) || req.url.startsWith(gatewayUri)) && jwt != '') {
     const authRequest = req.clone({
       setHeaders: { authorization: `Bearer ${jwt}` },
     });

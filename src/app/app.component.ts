@@ -34,4 +34,8 @@ export class AppComponent {
     this.service.logout();
     this.router.navigate(['']);
   }
+
+  public profile() {
+    this.router.navigate(['profile/' + this.service.currentUser$.getValue()?._id]);
+  }
 }
