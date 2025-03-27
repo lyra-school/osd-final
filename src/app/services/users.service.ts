@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { catchError, Observable, throwError, retry } from 'rxjs';
 import { User } from '../interfaces/user';
+import { BirdAPI } from '../interfaces/birdapi';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  // change to proper API gateway later
-  private userEndpoint = 'https://190mnbm8j2.execute-api.eu-west-1.amazonaws.com';
+  private userEndpoint = 'https://ctnt9sez26.execute-api.eu-west-1.amazonaws.com/Main';
 
   // for changing user info as it depends on validation that would otherwise have to be redone for a lambda
   private alternateUserEndpoint = 'http://34.243.118.68:3000/users';
@@ -19,8 +19,8 @@ export class UsersService {
     .pipe(retry(3), catchError(this.handleError));
   }
 
-  public getBirdNames() : Observable<string[]> {
-    return this.http.get<string[]>(this.userEndpoint + '/birds')
+  public getBirdNames() : Observable<BirdAPI[]> {
+    return this.http.get<BirdAPI[]>(this.userEndpoint + '/birds')
     .pipe(retry(3), catchError(this.handleError));
   }
 

@@ -1,1 +1,39 @@
-<p>edit-profile works!</p>
+<div class="container-fluid">
+    <div class="row align-items-start align-items-stretch d-flex">
+       <form class="col-md-6 offset-md-3 mt-5" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+           <mat-card style="background-color:#e2d2ff;">
+               <mat-card-header class="h2 m-3">Submit Bird</mat-card-header>
+               <mat-form-field appearance="outline">
+                   <mat-label for="name">Name</mat-label>
+                   <input id="name" type="text" matInput formControlName="name">
+                   @if (!name?.value){
+                   <mat-hint>The common name of your bird</mat-hint>
+                   }
+                   @if (name?.hasError('required') ){
+                   <mat-error>You must have a type</mat-error>
+                   }
+                   @else if(name?.hasError('maxlength')) {
+                       <mat-error>Type must be no more than 64 characters long</mat-error>
+                   }
+               </mat-form-field>
+               <mat-form-field appearance="outline">
+                   <mat-label for="about">About Me</mat-label>
+                   <input id="about" type="text" matInput formControlName="about">
+                   @if (!about?.value){
+                   <mat-hint>The scientific (latin) name of your bird</mat-hint>
+                   }
+                   @if (about?.hasError('required') ){
+                   <mat-error>You must have a latin name</mat-error>
+                   }
+                   @else if(about?.hasError('maxlength')) {
+                       <mat-error>The latin name must be no more than 64 characters long</mat-error>
+                   }
+               </mat-form-field>
+               <mat-card-actions>
+                   <button mat-raised-button style="background-color: #af83ff;" type="submit" [disabled]="userForm.invalid">Submit</button>
+               </mat-card-actions>
+           </mat-card>
+       </form>
+    </div>
+   </div>
+   

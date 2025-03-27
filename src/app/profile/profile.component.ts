@@ -15,6 +15,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BirdAPI } from '../interfaces/birdapi';
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +29,7 @@ export class ProfileComponent {
   public authService: AuthService;
   id: string | null = "";
   showForm: boolean = false;
-  birdCollection:string[]=[];
+  birdCollection:BirdAPI[]=[];
   birdForm: FormGroup = new FormGroup({});
 
   user$: Observable<User> | undefined;

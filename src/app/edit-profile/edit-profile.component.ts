@@ -17,7 +17,9 @@ import { UsersService } from '../services/users.service';
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatButtonModule,
+    MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule,
+    MatOptionModule],
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.css'
 })
