@@ -50,31 +50,18 @@ export class EditProfileComponent {
       console.log("Cannot update a user who doesn't exist!");
     }
     else {
-      if(this.bird != undefined) {
-        let str = this.bird._id as string;
-        this.updateExisting(str, this.birdForm.value);
+      if(this.user != undefined) {
+        let str = this.user._id as string;
+        this.updateExisting(str, this.userForm.value);
       }
     }
   }
 
-  createNew(formValues: Bird) {
-    formValues.owner = this.authService.currentUser$.getValue()?._id;
-    this.service.addBird({ ...formValues })
+  updateExisting(id: string, updatedValues: User) {
+    this.service.updateUser(id, { ...updatedValues })
       .subscribe({
         next: response => {
-          this.router.navigateByUrl('/birds')
-        },
-        error: (err: Error) => {
-          console.log(err.message);
-        }
-      })
-  }
-
-  updateExisting(id: string, updatedValues: Bird) {
-    this.service.updateBird(id, { ...updatedValues })
-      .subscribe({
-        next: response => {
-          this.router.navigateByUrl('/birds')
+          this.router.navigateByUrl('/sightings')
         },
         error: (err: Error) => {
           console.log(err.message);
