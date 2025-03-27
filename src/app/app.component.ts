@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet, NavigationEnd } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from './services/auth.service';
 import { CommonModule } from '@angular/common';
+
+declare var gtag: Function;
 
 @Component({
   selector: 'app-root',
@@ -17,9 +19,17 @@ export class AppComponent {
   public router : Router;
   public service : AuthService;
 
+
   constructor(router: Router, service: AuthService) {
     this.router = router;
     this.service = service;
+
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd) {
+        console.log(event.urlAfterRedirects);
+        gtag('config', 0, {'page_path': event.urlAfterRedirects});
+      }
+    })
   }
 
   public login() {

@@ -11,14 +11,14 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
-    {path: '', component: LatestSightingsComponent, pathMatch:'full'},
-    {path: 'login', component: LoginComponent, pathMatch:'full'},
-    {path: 'register', component: RegisterComponent, pathMatch:'full'},
-    {path: 'profile/:id', component: ProfileComponent, pathMatch:'full'},
+    {path: '', component: LatestSightingsComponent, pathMatch:'full', title:"Latest Sightings"},
+    {path: 'login', component: LoginComponent, pathMatch:'full', title:"Login"},
+    {path: 'register', component: RegisterComponent, pathMatch:'full', title:"Register"},
+    {path: 'profile/:id', component: ProfileComponent, pathMatch:'full', title:"Profile"},
     {path: 'sightings', redirectTo: '/', pathMatch:'full'},
-    {path: 'sightings/:id', component: SightingDetailsComponent, pathMatch:'full'},
+    {path: 'sightings/:id', component: SightingDetailsComponent, pathMatch:'full', title:"Individual Sighting"},
     {path: 'submit', component: SubmitSightingComponent, pathMatch:'full', canActivate: [loginGuard]},
     {path: 'submit-bird', component: SubmitBirdComponent, pathMatch:'full', canActivate: [loginGuard]},
-    {path: 'birds', component: LatestBirdsComponent, pathMatch:'full'},
-    {path: 'birds/:id', component: BirdDetailsComponent, pathMatch:'full'}
+    {path: 'birds', component: LatestBirdsComponent, pathMatch:'full', title:"Latest Birds"},
+    {path: 'birds/:id', component: BirdDetailsComponent, pathMatch:'full', title:"Individual Bird"}
 ];

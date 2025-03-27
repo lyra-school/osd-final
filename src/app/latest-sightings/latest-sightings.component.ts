@@ -6,6 +6,7 @@ import { SightingsService } from '../services/sightings.service';
 import { Bird } from '../interfaces/bird';
 import {MatButtonModule} from '@angular/material/button';
 import { Router } from '@angular/router';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-latest-sightings',
@@ -21,7 +22,7 @@ export class LatestSightingsComponent {
   page:number=1;
   showButton:boolean=true;
   showPrevButton:boolean=false;
-  constructor(private service:SightingsService, private router:Router) {
+  constructor(private service:SightingsService, private router:Router, private analytics:AnalyticsService) {
     this.sightings = [];
     this.nextSightings = [];
     this.birds = [];
@@ -65,6 +66,7 @@ export class LatestSightingsComponent {
   }
 
   nextPage() {
+    this.analytics.trackEvent("click_next_page_sightings", "click_next_page_sightings", "button_click")
     this.sightings = this.nextSightings;
     this.page++;
     this.nextSightings = [];
