@@ -15,5 +15,5 @@ RUN npm run build
 # line 16 add another image to build base, the nginx web server
 FROM nginx:alpine
 # line 18 copy the buit application to the nginx root dir at /html
-COPY --from=build /app/dist/hello-world/browser /usr/share/nginx/html
+COPY --from=build /app/dist/webprog2-assignment2/browser /usr/share/nginx/html
 EXPOSE 80
